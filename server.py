@@ -3,10 +3,10 @@ import random as rnd
 
 #connect to the data base
 con = psycopg2.connect(
-    		host = "127.0.0.1",
-    		database = "prueba",
-    		user = "postgres",
-    		password = "1234",
+    		host = "ec2-54-75-238-138.eu-west-1.compute.amazonaws.com",#127.0.0.1",
+    		database = "dfrtb63stjohc3",
+    		user = "sjudskmhldapvz",
+    		password = "e7cc00c0a5c24b576e0a386a209cbbdc84fcd627d3cce989667c5acfe57ae91b",
     		port = 5432)
 #cursor
 cur = con.cursor()
@@ -17,33 +17,30 @@ con.autocommit = True
 #cur.execute("select user, name from usuario")
 #cur.execute("insert into usuario (user, pwd) values (%s, %s)", ('u', 'c'))
 #
-#cur.execute("CREATE TABLE users(usr varchar(50) PRIMARY KEY, pwd varchar(16), score integer)")
+#cur.execute("CREATE TABLE users(usrname varchar(16) PRIMARY KEY, usr varchar(50), pwd varchar(16), score integer)")
 #cur.execute("INSERT INTO users(usr, pwd) VALUES(%s, %s)", ('u', 'c'))
 
 print("Register now!")
-user = input('Type the new usr: ')
-pswd = input('Type the new pwd: ')
-sc = rnd.randint(0,100)
+#username1 = input('usrame')
+#user = input('Type the new usr: ')
+#pswd = input('Type the new pwd: ')
+#sc = rnd.randint(0,100)
 
 try:
-	cur.execute("INSERT INTO users(usr, pwd, score) VALUES(%s, %s, %s)", (user, pswd, sc))
+	#cur.execute("INSERT INTO users(usrname, usr, pwd, score) VALUES(%s, %s, %s, %s)", (username1, user, pswd, sc))
 	#Table info
 	print("====================================================")
-	cur.execute("SELECT usr, pwd ,score FROM users")
-
+	#cur.execute("SELECT usr, pwd ,score FROM users")
+	cur.execute("SELECT usrname , score FROM users WHERE score IS NOT NULL")
 	rows = cur.fetchall()
 	for r in rows:
-		print (f"User: {r[0]} Pwd:{r[1]} Score: {r[2]}")
+		print (f"Username: {r[0]} Score: {r[1]}")
 	print("====================================================")
 except:
 	print("##### UPS!!!  User already exists :(  #####")
 
 
-#commit
-#cur.commit()
-
-#close cursor
+#closing cursor
 cur.close()
-
-#close the connection
+#closing the connection
 con.close()
