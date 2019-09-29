@@ -5,9 +5,11 @@ import os
 from flask import Flask
 app = Flask(__name__)
 
+port1 = ''
+
 @app.route("/")
 def hello():
-    return "Hello from Python server!"
+    return (f"Hello from Python server!", port1)
 
 
 def cliente (c, addr, client):
@@ -37,6 +39,7 @@ def cliente (c, addr, client):
 if __name__ == "__main__":
 	# declaramos el puerto en el que haremos la conexion
     port = int(os.environ.get("PORT", 5000))
+    port1 = port
     app.run(host='0.0.0.0', port=port)
     server()
 
