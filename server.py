@@ -30,7 +30,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print("Socket creado!")
 
 # declaramos el puerto en el que haremos la conexion
-port = 23451				
+port = int(os.environ.get("PORT", 5000))				
 
 # ponemos a la escucha al servidor a todas las ips entrantes
 # al puerto dado
