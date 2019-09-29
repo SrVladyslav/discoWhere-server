@@ -5,11 +5,9 @@ import os
 from flask import Flask
 app = Flask(__name__)
 
-port1 = ''
-
 @app.route("/")
 def hello():
-    return port1#("Hello from Python server! {{port1}}")
+    return "Hello from Python server!"
 
 
 def cliente (c, addr, client):
