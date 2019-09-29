@@ -9,7 +9,7 @@ port1 = ''
 
 @app.route("/")
 def hello():
-    return ("Hello from Python server! {{port1}}")
+    return port1#("Hello from Python server! {{port1}}")
 
 
 def cliente (c, addr, client):
