@@ -3,10 +3,10 @@ import random as rnd
 
 #connect to the data base
 con = psycopg2.connect(
-    		host = "ec2-23-23-182-18.compute-1.amazonaws.com",#127.0.0.1",
-    		database = "dennd4iuajacnp",
-    		user = "qakosmistdhlbr",
-    		password = "2c06eed80820c1b17e4e780409a94f670403dac2040ee7624349d04d09131850",
+    		host = "ec2-174-129-227-51.compute-1.amazonaws.com",#127.0.0.1",
+    		database = "d1v0tqlhb89str",
+    		user = "njsxiqhypfdapi",
+    		password = "dfb9dfb53353b301f08e2fdea69a6a2a71312bb048e16f64303233a7ae018b7a",
     		port = 5432)
 #cursor
 cur = con.cursor()
@@ -14,9 +14,6 @@ cur = con.cursor()
 con.autocommit = True
 
 #execute query
-#cur.execute("select user, name from usuario")
-#cur.execute("insert into usuario (user, pwd) values (%s, %s)", ('u', 'c'))
-#
 #cur.execute("CREATE TABLE users(usrname varchar(16) PRIMARY KEY, usr varchar(50), pwd varchar(16), karma integer)")
 #cur.execute("CREATE TABLE posts(usrname varchar(16) PRIMARY KEY, msg varchar(200))")
 #cur.execute("INSERT INTO users(usr, pwd) VALUES(%s, %s)", ('u', 'c'))
