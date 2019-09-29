@@ -7,7 +7,6 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-	server()
     return "Hello from Python server!"
 
 
@@ -39,6 +38,7 @@ if __name__ == "__main__":
 	# declaramos el puerto en el que haremos la conexion
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
+    server()
 
 def server():
 	# creamos el objeto del socket 
