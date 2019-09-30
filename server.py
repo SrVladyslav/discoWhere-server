@@ -2,13 +2,6 @@ import socket
 import _thread as t		
 import sys
 import os
-from flask import Flask
-app = Flask(__name__)
-
-@app.route("/")
-def hello():
-    return "Hello from Python server!"
-
 
 def cliente (c, addr, client):
 	print('Peticion entrante de: ', addr) 
