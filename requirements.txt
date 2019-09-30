@@ -2,4 +2,4 @@ django
 gunicorn
 django-heroku
 Flask
-Python-3.7
+Python
