@@ -1,0 +1,9 @@
+{
+    "database": {
+        "host": "127.0.0.1",
+        "database": "discoWhereDB",
+        "user": "discoServer",
+        "password": "supersecretpassword",
+        "port": 5432
+    }
+}

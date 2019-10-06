@@ -3,8 +3,15 @@ import random as rnd
 import socket
 import _thread as t		
 import sys
+import json
+import json
+import os
 
-def cliente (c, addr, client):
+CONFIG_FN = "config.json"
+CONFIG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), CONFIG_FN)
+
+
+def cliente (c, addr, client, db_cfg):
 	print('Peticion entrante de: ', addr) 
 	# Devolviendo un mensaje por los jajas. 
 	c.sendall(b'Bienvenidos al servidor, pulsa s para salir o info para informacion') 
@@ -24,11 +31,11 @@ def cliente (c, addr, client):
 				print(f"Cliente <",client ,f">:  " + data)
 				#connect to the data base
 				con = psycopg2.connect(
-				    		host = "ec2-174-129-227-51.compute-1.amazonaws.com",#127.0.0.1",
-				    		database = "d1v0tqlhb89str",
-				    		user = "njsxiqhypfdapi",
-				    		password = "dfb9dfb53353b301f08e2fdea69a6a2a71312bb048e16f64303233a7ae018b7a",
-				    		port = 5432)
+				    		host = db_cfg["host"],
+				    		database = db_cfg["database"],
+				    		user = db_cfg["user"],
+				    		password = db_cfg["password"],
+				    		port = db_cfg["port"])
 				#cursor
 				cur = con.cursor()
 				con.autocommit = True
@@ -63,6 +70,10 @@ def cliente (c, addr, client):
 			c.close()
 	print(f"===Cliente <" ,client ,f"> se ha desconectado.===")
 
+# cargar configuración desde archivo json
+with open(CONFIG_PATH) as cfg_file:
+        config = json.load(cfg_file);
+        
 # creamos el objeto del socket 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print("Socket creado!")
@@ -84,7 +95,7 @@ clientes = 0
 while clientes < 5	: 
 	# estableciendo la conexion con el cliente 
 	c, addr = s.accept()
-	t.start_new_thread(cliente, (c, addr, clientes))	 
+	t.start_new_thread(cliente, (c, addr, clientes, config['database']))	 
 	clientes += 1
 
 # cerrando la conexion (IMPORTANTE o SUSPENDEIS) 
